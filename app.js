@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorHex = document.getElementById('colorHex');
     const colorRGB = document.getElementById('colorRGB');
     const toneResult = document.getElementById('toneResult');
-    const undertoneResult = document.getElementById('undertoneResult');
     const recommendationText = document.getElementById('recommendationText');
 
     let currentStream = null;
@@ -132,50 +131,34 @@ document.addEventListener('DOMContentLoaded', () => {
         // Luminance calculation
         const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
         
-        let tone = "normal skin (Medium)";
-        if (luminance > 200) tone = "Super White (Very Fair / Porcelain)";
-        else if (luminance > 170) tone = "White (Fair / Light)";
-        else if (luminance > 130) tone = "ลูกครึ่ง JAK (Medium Light)";
-        else if (luminance > 90) tone = "ลูกครึ่ง NIGGA / ผิวแทน (Medium / Tan)";
-        else if (luminance > 50) tone = "NIGGA (Deep / Dark)";
-        else tone = "Super NIGGA (Very Black)";
+        let tone = "Normal Skin (Medium)";
+        if (luminance > 200) tone = "Super White (มึงแม่งโครตขาว)";
+        else if (luminance > 170) tone = "White (มึงแม่งขาว)";
+        else if (luminance > 130) tone = "Yellow skin (มึงแม่งเจ๊ก)";
+        else if (luminance > 90) tone = "เกือบดำ (มึงแม่งแทน)";
+        else if (luminance > 50) tone = "NIGGA (get back to work!)";
+        else tone = "Super NIGGA (you are fucked Nigga!!!!!!)";
 
-        // Undertone calculation
-        // Compare Red vs Blue/Green ratio
-        let undertone = "โทนธรรมชาติ (Neutral)";
-        
-        if (r > g && r > b) {
-            const ratio = r / Math.max(b, 1);
-            if (ratio > 1.8) {
-                undertone = "โทนขาว (White)";
-            } else if (ratio < 1.4) {
-                undertone = "โทนดำ (Super NIGGA)";
-            } else {
-                undertone = "โทนปกติ (Normal Skin)";
-            }
-        }
-
-        return { tone, undertone };
+        return { tone };
     }
 
     // Display Results
     function displayResults(r, g, b, hex) {
-        const { tone, undertone } = classifyTone(r, g, b);
+        const { tone } = classifyTone(r, g, b);
 
         // Update UI
         colorSwatch.style.backgroundColor = hex;
         colorHex.textContent = hex;
         colorRGB.textContent = `RGB(${r}, ${g}, ${b})`;
         toneResult.textContent = tone;
-        undertoneResult.textContent = undertone;
 
         // Custom Recommendation
         if (tone.includes('ขาว')) {
-            recommendationText.textContent = "ผิวของคุณแม่งขาว แนะนำให้เหยียดคนผิวดำเยอะๆ (Your are White people)";
-        } else if (tone.includes('ดำ') || tone.includes('เข้ม')) {
-            recommendationText.textContent = "ผิวของคุณแม่งอย่างดำ ใช้ครีมกันแดดแม่งก็ไม่ได้ช่วยอะไร มึงไปเก็บฝ้าย NIGGA Get back to work!";
+            recommendationText.textContent = "ผิวของคุณแม่งขาว ชีวิตนี้เป็นชีวิตที่ดี ไม่ต้องทำอะไรแล้ว เพราะมึงมันขาว จงเหยียดไอ่พวกผิวสีต่อไป...";
+        } else if (tone.includes('คล้ำ') || tone.includes('เข้ม')) {
+            recommendationText.textContent = "ผิวของคุณแม่งดำ ใช้ครีมกันแดดแม่งก็ไม่ได้ช่วย ควรหันหน้าไปทางทิศตะวันออกแล้วสวดภาวนาขอพรจากพระศิวะให้ผิวของคุณสว่างขึ้น";
         } else {
-            recommendationText.textContent = "ผิวสีกลางของคุณสามารถปรับเข้ากับเมคอัพได้หลากหลาย แต่อย่าทำให้ดำเพราะมึงจะกลายเป็น NIGGA ได้";
+            recommendationText.textContent = "ผิวสีกลางของคุณสามารถปรับเข้ากับเมคอัพได้หลากหลาย แต่อย่าให้ผิวเริ่มดำเพราะไม่งั้นมึงจะโดนเหยียดไปจนวันตาย...";
         }
 
         // Switch Views
