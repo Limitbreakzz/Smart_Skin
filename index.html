@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura | Skin Tone Analyzer</title>
+    <meta name="description" content="Discover your perfect skin tone match with our AI-powered real-time camera analyzer.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Aura</h1>
+            <p>Smart Skin Tone Analyzer</p>
+        </header>
+
+        <main>
+            <div class="camera-section">
+                <div class="video-container" id="videoContainer">
+                    <video id="cameraStream" autoplay playsinline></video>
+                    <div class="target-overlay">
+                        <div class="crosshair"></div>
+                    </div>
+                    <div class="loading-state" id="loadingState">
+                        <div class="spinner"></div>
+                        <span>Initializing Camera...</span>
+                    </div>
+                    <div class="error-state hidden" id="errorState">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                        <p>Camera access denied or unavailable.</p>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="captureBtn" class="btn-primary" disabled>
+                        <span class="btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+                        </span>
+                        Analyze Skin Tone
+                    </button>
+                    <button id="switchCameraBtn" class="btn-secondary hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 3 16.29"></path><polyline points="18 13 21 16 24 13"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-section hidden" id="resultsSection">
+                <h2>Analysis Result</h2>
+                
+                <div class="result-card">
+                    <div class="color-display">
+                        <div class="color-swatch" id="colorSwatch"></div>
+                        <div class="color-info">
+                            <div class="color-hex" id="colorHex">#000000</div>
+                            <div class="color-rgb" id="colorRGB">RGB(0,0,0)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-details">
+                        <div class="detail-item">
+                            <span class="label">Skin Tone</span>
+                            <span class="value" id="toneResult">Analyzing...</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Undertone</span>
+                            <span class="value" id="undertoneResult">Analyzing...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation">
+                        <p id="recommendationText">Position your face or wrist in the target area with good, natural lighting for best results.</p>
+                    </div>
+                </div>
+
+                <button id="resetBtn" class="btn-outline">Analyze Again</button>
+            </div>
+        </main>
+
+        <canvas id="captureCanvas" style="display: none;"></canvas>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
