@@ -132,26 +132,26 @@ document.addEventListener('DOMContentLoaded', () => {
         // Luminance calculation
         const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
         
-        let tone = "Medium";
-        if (luminance > 200) tone = "Very Fair / Porcelain";
-        else if (luminance > 170) tone = "Fair / Light";
-        else if (luminance > 130) tone = "Medium Light";
-        else if (luminance > 90) tone = "Medium / Tan";
-        else if (luminance > 50) tone = "Deep / Dark";
-        else tone = "Very Deep";
+        let tone = "ผิวสีกลาง (Medium)";
+        if (luminance > 200) tone = "ผิวขาวมาก (Very Fair / Porcelain)";
+        else if (luminance > 170) tone = "ผิวขาวสว่าง (Fair / Light)";
+        else if (luminance > 130) tone = "ผิวสองสีอ่อน (Medium Light)";
+        else if (luminance > 90) tone = "ผิวสองสี / ผิวแทน (Medium / Tan)";
+        else if (luminance > 50) tone = "ผิวคล้ำ (Deep / Dark)";
+        else tone = "ผิวเข้มมาก (Very Deep)";
 
         // Undertone calculation
         // Compare Red vs Blue/Green ratio
-        let undertone = "Neutral";
+        let undertone = "โทนธรรมชาติ (Neutral)";
         
         if (r > g && r > b) {
             const ratio = r / Math.max(b, 1);
             if (ratio > 1.8) {
-                undertone = "Warm (Golden/Peach)";
+                undertone = "โทนอุ่น (Warm - อมเหลือง/พีช)";
             } else if (ratio < 1.4) {
-                undertone = "Cool (Pink/Red)";
+                undertone = "โทนเย็น (Cool - อมชมพู/แดง)";
             } else {
-                undertone = "Neutral (Olive/Balanced)";
+                undertone = "โทนธรรมชาติ (Neutral - โอลีฟ/สมดุล)";
             }
         }
 
@@ -170,12 +170,12 @@ document.addEventListener('DOMContentLoaded', () => {
         undertoneResult.textContent = undertone;
 
         // Custom Recommendation
-        if (tone.includes('Fair') || tone.includes('Light')) {
-            recommendationText.textContent = "Your skin tone is on the lighter end of the spectrum. Sunscreen (SPF 30+) is highly recommended to protect against UV damage.";
-        } else if (tone.includes('Deep')) {
-            recommendationText.textContent = "Your rich skin tone has natural protection, but sunscreen is still recommended for overall skin health and to prevent hyperpigmentation.";
+        if (tone.includes('ขาว')) {
+            recommendationText.textContent = "ผิวของคุณอยู่ในโทนสว่าง แนะนำให้ใช้ครีมกันแดด (SPF 30 ขึ้นไป) เป็นประจำเพื่อปกป้องผิวจากรังสียูวีและป้องกันการเกิดฝ้ากระ";
+        } else if (tone.includes('คล้ำ') || tone.includes('เข้ม')) {
+            recommendationText.textContent = "ผิวโทนเข้มของคุณมีเกราะป้องกันตามธรรมชาติระดับหนึ่ง แต่ก็ยังควรใช้ครีมกันแดดเพื่อสุขภาพผิวที่ดีและป้องกันสีผิวไม่สม่ำเสมอ";
         } else {
-            recommendationText.textContent = "Your medium skin tone is versatile. Ensure consistent hydration and sun protection for a healthy glow.";
+            recommendationText.textContent = "ผิวสีกลางของคุณสามารถปรับเข้ากับเมคอัพได้หลากหลาย อย่าลืมเติมความชุ่มชื้นและทากันแดดเพื่อผิวที่ดูโกลว์สุขภาพดี";
         }
 
         // Switch Views
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event Listeners
     captureBtn.addEventListener('click', () => {
-        captureBtn.innerHTML = '<div class="spinner" style="width: 20px; height: 20px; border-width: 2px;"></div> Analyzing...';
+        captureBtn.innerHTML = '<div class="spinner" style="width: 20px; height: 20px; border-width: 2px;"></div> กำลังวิเคราะห์...';
         captureBtn.disabled = true;
         
         // Slight delay to allow UI to update and feel like it's processing
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="btn-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
                 </span>
-                Analyze Skin Tone
+                วิเคราะห์สีผิว
             `;
         }, 800);
     });
