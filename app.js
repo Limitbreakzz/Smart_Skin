@@ -132,13 +132,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Luminance calculation
         const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
         
-        let tone = "ผิวสีกลาง (Medium)";
-        if (luminance > 200) tone = "ผิวขาวมาก (Very Fair / Porcelain)";
-        else if (luminance > 170) tone = "ผิวขาวสว่าง (Fair / Light)";
-        else if (luminance > 130) tone = "ผิวสองสีอ่อน (Medium Light)";
-        else if (luminance > 90) tone = "ผิวสองสี / ผิวแทน (Medium / Tan)";
-        else if (luminance > 50) tone = "ผิวคล้ำ (Deep / Dark)";
-        else tone = "ผิวเข้มมาก (Very Deep)";
+        let tone = "normal skin (Medium)";
+        if (luminance > 200) tone = "Super White (Very Fair / Porcelain)";
+        else if (luminance > 170) tone = "White (Fair / Light)";
+        else if (luminance > 130) tone = "ลูกครึ่ง JAK (Medium Light)";
+        else if (luminance > 90) tone = "ลูกครึ่ง NIGGA / ผิวแทน (Medium / Tan)";
+        else if (luminance > 50) tone = "NIGGA (Deep / Dark)";
+        else tone = "Super NIGGA (Very Black)";
 
         // Undertone calculation
         // Compare Red vs Blue/Green ratio
@@ -147,11 +147,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (r > g && r > b) {
             const ratio = r / Math.max(b, 1);
             if (ratio > 1.8) {
-                undertone = "โทนอุ่น (Warm - อมเหลือง/พีช)";
+                undertone = "โทนขาว (White)";
             } else if (ratio < 1.4) {
-                undertone = "โทนเย็น (Cool - อมชมพู/แดง)";
+                undertone = "โทนดำ (Super NIGGA)";
             } else {
-                undertone = "โทนธรรมชาติ (Neutral - โอลีฟ/สมดุล)";
+                undertone = "โทนปกติ (Normal Skin)";
             }
         }
 
@@ -171,11 +171,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Custom Recommendation
         if (tone.includes('ขาว')) {
-            recommendationText.textContent = "ผิวของคุณอยู่ในโทนสว่าง แนะนำให้ใช้ครีมกันแดด (SPF 30 ขึ้นไป) เป็นประจำเพื่อปกป้องผิวจากรังสียูวีและป้องกันการเกิดฝ้ากระ";
-        } else if (tone.includes('คล้ำ') || tone.includes('เข้ม')) {
-            recommendationText.textContent = "ผิวโทนเข้มของคุณมีเกราะป้องกันตามธรรมชาติระดับหนึ่ง แต่ก็ยังควรใช้ครีมกันแดดเพื่อสุขภาพผิวที่ดีและป้องกันสีผิวไม่สม่ำเสมอ";
+            recommendationText.textContent = "ผิวของคุณแม่งขาว แนะนำให้เหยียดคนผิวดำเยอะๆ (Your are White people)";
+        } else if (tone.includes('ดำ') || tone.includes('เข้ม')) {
+            recommendationText.textContent = "ผิวของคุณแม่งอย่างดำ ใช้ครีมกันแดดแม่งก็ไม่ได้ช่วยอะไร มึงไปเก็บฝ้าย NIGGA Get back to work!";
         } else {
-            recommendationText.textContent = "ผิวสีกลางของคุณสามารถปรับเข้ากับเมคอัพได้หลากหลาย อย่าลืมเติมความชุ่มชื้นและทากันแดดเพื่อผิวที่ดูโกลว์สุขภาพดี";
+            recommendationText.textContent = "ผิวสีกลางของคุณสามารถปรับเข้ากับเมคอัพได้หลากหลาย แต่อย่าทำให้ดำเพราะมึงจะกลายเป็น NIGGA ได้";
         }
 
         // Switch Views
